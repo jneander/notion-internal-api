@@ -1,0 +1,15 @@
+{
+  "name": "@jneander/notion-internal-api",
+  "version": "0.1.0",
+  "description": "A client library for working with Notion's internal API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "notion",
+    "api"
+  ],
+  "author": "Jeremy Neander <jeremy.neander@gmail.com> (http://jneander.com)",
+  "license": "MIT"
+}
