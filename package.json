@@ -2,14 +2,22 @@
   "name": "@jneander/notion-internal-api",
   "version": "0.1.0",
   "description": "A client library for working with Notion's internal API",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "build:watch": "tsc -w"
   },
   "keywords": [
     "notion",
     "api"
   ],
   "author": "Jeremy Neander <jeremy.neander@gmail.com> (http://jneander.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.3.4"
+  }
 }
