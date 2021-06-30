@@ -1,1 +1,1 @@
-export function example() {}
+export * from './notion'

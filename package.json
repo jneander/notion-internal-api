@@ -18,6 +18,11 @@
   "author": "Jeremy Neander <jeremy.neander@gmail.com> (http://jneander.com)",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.3.4"
+    "node-fetch": "^2.6.1",
+    "typescript": "^4.3.4",
+    "uuid": "^8.3.2"
+  },
+  "peerDependencies": {
+    "uuid": "^8.0.0"
   }
 }
