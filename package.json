@@ -2,14 +2,23 @@
   "name": "@jneander/notion-internal-api",
   "version": "0.1.0",
   "description": "A client library for working with Notion's internal API",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/commonjs/index.js",
+  "modules": "dist/module/index.js",
+  "types": "dist/main/index.d.ts",
   "files": [
     "/dist"
   ],
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc -w"
+    "build": "run-p build:module build:commonjs",
+    "build:commonjs": "tsc -p tsconfig.commonjs.json",
+    "build:commonjs:watch": "tsc -p tsconfig.commonjs.json -w",
+    "build:module": "tsc -p tsconfig.json",
+    "build:module:watch": "tsc -p tsconfig.json -w",
+    "build:watch": "run-p build:module:watch build:commonjs:watch",
+    "prebuild:commonjs": "rimraf dist/commonjs",
+    "prebuild:commonjs:watch": "rimraf dist/commonjs",
+    "prebuild:module": "rimraf dist/module",
+    "prebuild:module:watch": "rimraf dist/module"
   },
   "keywords": [
     "notion",
@@ -19,6 +28,8 @@
   "license": "MIT",
   "devDependencies": {
     "node-fetch": "^2.6.1",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
     "typescript": "^4.3.4",
     "uuid": "^8.3.2"
   },
