@@ -4,7 +4,7 @@
   "description": "A client library for working with Notion's internal API",
   "main": "dist/commonjs/index.js",
   "modules": "dist/module/index.js",
-  "types": "dist/main/index.d.ts",
+  "types": "dist/main",
   "files": [
     "/dist"
   ],
