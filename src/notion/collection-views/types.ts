@@ -1,4 +1,8 @@
-import type {Aggregation, PropertyFilterGroup} from '../collection-queries'
+import type {
+  Aggregation,
+  PropertyFilterGroup,
+  Sort
+} from '../collection-queries'
 import type {PropertyKey} from '../properties'
 import type {BaseBlock, BaseBlockValue, Uuid} from '../shared'
 
@@ -76,6 +80,7 @@ export type CollectionViewValue = BaseBlockValue & {
   query2?: {
     aggregations?: Aggregation[]
     filter?: PropertyFilterGroup
+    sort?: Sort[]
   }
 }
 

@@ -1,4 +1,6 @@
+import {PropertyKey} from '../../properties'
+
 export type Sort = {
-  property: 'title'
+  property: PropertyKey
   direction: 'ascending'
 }
