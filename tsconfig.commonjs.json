@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "dist/commonjs",
+    "outDir": "./lib",
     "module": "commonjs"
   },
   "extends": "./tsconfig"
