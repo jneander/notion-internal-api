@@ -1,6 +1,7 @@
 export {default as NotionClient} from './NotionClient'
 
 export * from './blocks'
+export * from './collection-queries'
 export * from './collection-view-pages'
 export * from './collection-views'
 export * from './collections'
