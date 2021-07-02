@@ -1,10 +1,15 @@
-import {CheckboxResult} from './checkbox'
-import {DateResult} from './date'
-import {NumberResult} from './number'
-import {TextResult} from './text'
+export * from './checkbox'
+export * from './date'
+export * from './number'
+export * from './text'
+
+import {CheckboxFormula} from './checkbox'
+import {DateFormula} from './date'
+import {NumberFormula} from './number'
+import {TextFormula} from './text'
 
 export type FormulaProperty = {
   name: string
   type: 'formula'
-  formula?: CheckboxResult | DateResult | NumberResult | TextResult
+  formula?: CheckboxFormula | DateFormula | NumberFormula | TextFormula
 }

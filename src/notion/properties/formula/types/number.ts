@@ -1,12 +1,12 @@
-import {CheckboxResult} from './checkbox'
-import {DateResult} from './date'
+import {CheckboxFormula} from './checkbox'
+import {DateFormula} from './date'
 import {IfFunction, PropertyValue, TypedConditional} from './shared'
-import {TextResult} from './text'
+import {TextFormula} from './text'
 
 type NumberPropertyValue = PropertyValue<'number'>
 
-type NumberConditional = TypedConditional<'number', NumberResult>
-type NumberIfFunction = IfFunction<'number', NumberResult>
+type NumberConditional = TypedConditional<'number', NumberFormula>
+type NumberIfFunction = IfFunction<'number', NumberFormula>
 
 type NumberSymbol = {
   type: 'symbol'
@@ -21,7 +21,7 @@ type NumberConstant = {
   value_type: 'number'
 }
 
-interface OneArgumentNumberFunction<N, A = NumberResult> {
+interface OneArgumentNumberFunction<N, A = NumberFormula> {
   type: 'function'
   result_type: 'number'
   name: N
@@ -32,7 +32,7 @@ type TwoArgumentNumberFunction = {
   type: 'function'
   result_type: 'number'
   name: 'add' | 'subtract' | 'multiply' | 'divide' | 'pow' | 'mod'
-  args: [NumberResult, NumberResult]
+  args: [NumberFormula, NumberFormula]
 }
 
 type DateBetweenFunction = {
@@ -40,8 +40,8 @@ type DateBetweenFunction = {
   result_type: 'number'
   name: 'dateBetween'
   args: [
-    DateResult,
-    DateResult,
+    DateFormula,
+    DateFormula,
     (
       | 'years'
       | 'quarters'
@@ -60,10 +60,10 @@ type VariableArgumentNumberFunction = {
   type: 'function'
   result_type: 'number'
   name: 'max' | 'min'
-  args: [NumberResult, ...NumberResult[]]
+  args: [NumberFormula, ...NumberFormula[]]
 }
 
-interface OneArgumentNumberOperator<N, O, A = NumberResult> {
+interface OneArgumentNumberOperator<N, O, A = NumberFormula> {
   type: 'operator'
   operator: O
   name: N
@@ -71,7 +71,7 @@ interface OneArgumentNumberOperator<N, O, A = NumberResult> {
   args: [A]
 }
 
-interface OneArgumentNumberOperator<N, O, A = NumberResult> {
+interface OneArgumentNumberOperator<N, O, A = NumberFormula> {
   type: 'operator'
   operator: O
   name: N
@@ -84,18 +84,18 @@ type TwoArgumentNumberOperator<N, O> = {
   operator: O
   name: N
   result_type: 'number'
-  args: [NumberResult, NumberResult]
+  args: [NumberFormula, NumberFormula]
 }
 
 type DateConversion =
   | DateBetweenFunction
-  | OneArgumentNumberFunction<'date', DateResult>
-  | OneArgumentNumberFunction<'day', DateResult>
-  | OneArgumentNumberFunction<'hour', DateResult>
-  | OneArgumentNumberFunction<'minute', DateResult>
-  | OneArgumentNumberFunction<'month', DateResult>
-  | OneArgumentNumberFunction<'timestamp', DateResult>
-  | OneArgumentNumberFunction<'year', DateResult>
+  | OneArgumentNumberFunction<'date', DateFormula>
+  | OneArgumentNumberFunction<'day', DateFormula>
+  | OneArgumentNumberFunction<'hour', DateFormula>
+  | OneArgumentNumberFunction<'minute', DateFormula>
+  | OneArgumentNumberFunction<'month', DateFormula>
+  | OneArgumentNumberFunction<'timestamp', DateFormula>
+  | OneArgumentNumberFunction<'year', DateFormula>
 
 type BasicMath =
   | TwoArgumentNumberOperator<'add', '+'>
@@ -119,15 +119,15 @@ type ScientificMath =
   | OneArgumentNumberFunction<'sqrt'>
 
 type NumberFunction =
-  | OneArgumentNumberFunction<'length', TextResult>
+  | OneArgumentNumberFunction<'length', TextFormula>
   | OneArgumentNumberFunction<
       'toNumber',
-      CheckboxResult | DateResult | NumberResult | TextResult
+      CheckboxFormula | DateFormula | NumberFormula | TextFormula
     >
   | OneArgumentNumberFunction<'unaryMinus'>
   | OneArgumentNumberFunction<
       'unaryPlus',
-      CheckboxResult | NumberResult | TextResult
+      CheckboxFormula | NumberFormula | TextFormula
     >
   | TwoArgumentNumberFunction
   | VariableArgumentNumberFunction
@@ -137,10 +137,10 @@ type NumberOperator =
   | OneArgumentNumberOperator<
       'unaryPlus',
       '+',
-      CheckboxResult | NumberResult | TextResult
+      CheckboxFormula | NumberFormula | TextFormula
     >
 
-export type NumberResult =
+export type NumberFormula =
   | BasicMath
   | DateConversion
   | NumberConditional

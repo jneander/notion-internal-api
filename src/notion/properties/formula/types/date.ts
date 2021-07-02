@@ -1,10 +1,10 @@
-import {NumberResult} from './number'
+import {NumberFormula} from './number'
 import {IfFunction, PropertyValue, TypedConditional} from './shared'
 
 type DatePropertyValue = PropertyValue<'date'>
 
-type DateConditional = TypedConditional<'date', DateResult>
-type DateIfFunction = IfFunction<'date', DateResult>
+type DateConditional = TypedConditional<'date', DateFormula>
+type DateIfFunction = IfFunction<'date', DateFormula>
 
 type NamedDateFunction = {
   type: 'function'
@@ -12,7 +12,7 @@ type NamedDateFunction = {
   name: 'now'
 }
 
-interface OneArgumentDateFunction<N, A = DateResult> {
+interface OneArgumentDateFunction<N, A = DateFormula> {
   type: 'function'
   result_type: 'date'
   name: N
@@ -24,8 +24,8 @@ type DateMathFunction = {
   result_type: 'date'
   name: 'dateAdd' | 'dateSubtract'
   args: [
-    DateResult,
-    NumberResult,
+    DateFormula,
+    NumberFormula,
     (
       | 'years'
       | 'quarters'
@@ -42,12 +42,12 @@ type DateMathFunction = {
 
 type DateFunction = NamedDateFunction
 
-export type DateResult =
+export type DateFormula =
   | DateConditional
   | DateFunction
   | DateIfFunction
   | DateMathFunction
   | DatePropertyValue
   | OneArgumentDateFunction<'end'>
-  | OneArgumentDateFunction<'fromTimestamp', NumberResult>
+  | OneArgumentDateFunction<'fromTimestamp', NumberFormula>
   | OneArgumentDateFunction<'start'>

@@ -1,12 +1,12 @@
-import {DateResult} from './date'
-import {NumberResult} from './number'
+import {DateFormula} from './date'
+import {NumberFormula} from './number'
 import {IfFunction, PropertyValue, TypedConditional} from './shared'
-import {TextResult} from './text'
+import {TextFormula} from './text'
 
 type CheckboxPropertyValue = PropertyValue<'checkbox'>
 
-type CheckboxConditional = TypedConditional<'checkbox', CheckboxResult>
-type CheckboxIfFunction = IfFunction<'checkbox', CheckboxResult>
+type CheckboxConditional = TypedConditional<'checkbox', CheckboxFormula>
+type CheckboxIfFunction = IfFunction<'checkbox', CheckboxFormula>
 
 type CheckboxSymbol = {
   name: 'true' | 'false'
@@ -33,7 +33,7 @@ type OneArgumentCheckboxOperator<N, O> = {
   operator: O
   name: N
   result_type: 'checkbox'
-  args: [CheckboxResult]
+  args: [CheckboxFormula]
 }
 
 type TwoArgumentCheckboxOperator<N, O> = {
@@ -41,12 +41,12 @@ type TwoArgumentCheckboxOperator<N, O> = {
   operator: O
   name: N
   result_type: 'checkbox'
-  args: [CheckboxResult, CheckboxResult]
+  args: [CheckboxFormula, CheckboxFormula]
 }
 
 interface TypedComparisonFunction<
   N,
-  T = CheckboxResult | DateResult | NumberResult | TextResult
+  T = CheckboxFormula | DateFormula | NumberFormula | TextFormula
 > {
   type: 'function'
   name: N
@@ -57,7 +57,7 @@ interface TypedComparisonFunction<
 interface TypedComparisonOperator<
   N,
   O,
-  T = CheckboxResult | DateResult | NumberResult | TextResult
+  T = CheckboxFormula | DateFormula | NumberFormula | TextFormula
 > {
   type: 'operator'
   operator: O
@@ -66,24 +66,24 @@ interface TypedComparisonOperator<
   args: [T, T]
 }
 
-export type CheckboxResult =
+export type CheckboxFormula =
   | CheckboxConditional
   | CheckboxIfFunction
   | CheckboxPropertyValue
   | CheckboxSymbol
   | OneArgumentCheckboxFunction<
       'empty',
-      CheckboxResult | DateResult | NumberResult | TextResult
+      CheckboxFormula | DateFormula | NumberFormula | TextFormula
     >
   | OneArgumentCheckboxOperator<'not', 'not'>
   | TwoArgumentCheckboxFunction<
       'test',
-      DateResult | NumberResult | TextResult,
-      TextResult
+      DateFormula | NumberFormula | TextFormula,
+      TextFormula
     >
-  | TwoArgumentCheckboxFunction<'and', CheckboxResult>
-  | TwoArgumentCheckboxFunction<'contains', TextResult>
-  | TwoArgumentCheckboxFunction<'or', CheckboxResult>
+  | TwoArgumentCheckboxFunction<'and', CheckboxFormula>
+  | TwoArgumentCheckboxFunction<'contains', TextFormula>
+  | TwoArgumentCheckboxFunction<'or', CheckboxFormula>
   | TwoArgumentCheckboxOperator<'and', 'and'>
   | TypedComparisonFunction<'equal'>
   | TypedComparisonFunction<'larger'>

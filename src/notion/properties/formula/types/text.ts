@@ -1,12 +1,12 @@
-import {CheckboxResult} from './checkbox'
-import {DateResult} from './date'
-import {NumberResult} from './number'
+import {CheckboxFormula} from './checkbox'
+import {DateFormula} from './date'
+import {NumberFormula} from './number'
 import {IfFunction, PropertyValue, TypedConditional} from './shared'
 
 type TextPropertyValue = PropertyValue<'text'>
 
-type TextConditional = TypedConditional<'text', TextResult>
-type TextIfFunction = IfFunction<'text', TextResult>
+type TextConditional = TypedConditional<'text', TextFormula>
+type TextIfFunction = IfFunction<'text', TextFormula>
 
 type TextConstant = {
   type: 'constant'
@@ -19,42 +19,46 @@ type FormatDateFunction = {
   type: 'function'
   result_type: 'text'
   name: 'formatDate'
-  args: [DateResult, TextResult]
+  args: [DateFormula, TextFormula]
 }
 
 type FormatValueFunction = {
   type: 'function'
   result_type: 'text'
   name: 'format'
-  args: [CheckboxResult | DateResult | NumberResult | TextResult]
+  args: [CheckboxFormula | DateFormula | NumberFormula | TextFormula]
 }
 
 type TwoArgumentTextFunction = {
   type: 'function'
   result_type: 'text'
   name: 'add'
-  args: [TextResult, TextResult]
+  args: [TextFormula, TextFormula]
 }
 
 type ReplaceTextFunction = {
   type: 'function'
   result_type: 'text'
   name: 'replace' | 'replaceAll'
-  args: [CheckboxResult | NumberResult | TextResult, TextResult, TextResult]
+  args: [
+    CheckboxFormula | NumberFormula | TextFormula,
+    TextFormula,
+    TextFormula
+  ]
 }
 
 type VariableArgumentTextFunction = {
   type: 'function'
   result_type: 'text'
   name: 'concat' | 'join'
-  args: [TextResult, ...TextResult[]]
+  args: [TextFormula, ...TextFormula[]]
 }
 
 type SliceTextFunction = {
   type: 'function'
   result_type: 'text'
   name: 'slice'
-  args: [TextResult, NumberResult, NumberResult?]
+  args: [TextFormula, NumberFormula, NumberFormula?]
 }
 
 type AddOperator = {
@@ -62,10 +66,10 @@ type AddOperator = {
   result_type: 'text'
   operator: '+'
   name: 'add'
-  args: [TextResult, TextResult]
+  args: [TextFormula, TextFormula]
 }
 
-export type TextResult =
+export type TextFormula =
   | AddOperator
   | FormatDateFunction
   | FormatValueFunction
