@@ -7,6 +7,7 @@ import {
 } from '../../collection-queries'
 import {Uuid} from '../ids'
 import {RecordMap} from '../record-map'
+import {getBlockFromRecordMap} from '../../blocks'
 
 interface QueryCollectionIds {
   collectionId: Uuid
@@ -76,4 +77,42 @@ export function queryCollection(
   }
 
   return client.post<QueryCollectionResponseData>('queryCollection', body)
+}
+
+export async function queryCompleteCollection(
+  client: NotionClient,
+  queryCollectionIds: QueryCollectionIds,
+  {loader, query = {}}: QueryCollectionParameters
+) {
+  const {data, status} = await queryCollection(client, queryCollectionIds, {
+    loader,
+    query
+  })
+
+  if (status !== 200) {
+    return {status, data}
+  }
+
+  const {total} = data.result.reducerResults.collection_group_results
+
+  if (
+    data.result.reducerResults.collection_group_results.blockIds.some(
+      blockId => getBlockFromRecordMap(data.recordMap, blockId) == null
+    )
+  ) {
+    const updatedLoader: QueryCollectionLoader = {
+      ...loader,
+      reducers: {
+        ...loader.reducers,
+        collection_group_results: {type: 'results', limit: total}
+      }
+    }
+
+    return queryCollection(client, queryCollectionIds, {
+      loader: updatedLoader,
+      query
+    })
+  }
+
+  return {status, data}
 }
