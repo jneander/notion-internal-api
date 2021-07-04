@@ -1,5 +1,10 @@
 import NotionClient from '../../NotionClient'
-import {Aggregation, AggregationResult, Sort} from '../../collection-queries'
+import {
+  Aggregation,
+  AggregationResult,
+  PropertyFilterGroup,
+  Sort
+} from '../../collection-queries'
 import {Uuid} from '../ids'
 import {RecordMap} from '../record-map'
 
@@ -31,6 +36,7 @@ type CollectionGroupReducerResults = {
 
 export type QueryCollectionLoader = {
   type: 'reducer'
+  filter?: PropertyFilterGroup
   reducers: {
     collection_group_results: CollectionGroupReducer
     [key: string]: PropertyAggregation | CollectionGroupReducer
