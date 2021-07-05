@@ -9,6 +9,7 @@ interface GetBacklinksForBlockIds {
 
 type GetBacklinksForBlockResponseData = {
   backlinks: Backlink[]
+  inaccessibleBacklinkCount: number
   recordMap: RecordMap
 }
 
