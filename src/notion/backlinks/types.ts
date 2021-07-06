@@ -3,13 +3,13 @@ import {Pointer, Uuid} from '../shared'
 
 type BacklinkCollectionReference = {
   type: 'collection_reference'
-  pointer: Pointer
+  pointer?: Pointer
   block_id: Uuid
 }
 
 type BacklinkPropertyMention = {
   type: 'property_mention'
-  pointer: Pointer
+  pointer?: Pointer
   property_id: PropertyKey
 }
 
