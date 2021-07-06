@@ -1,4 +1,5 @@
 import {PropertyKey} from '../../../properties'
+import {CheckboxFilter} from './checkbox'
 import {DateFilter} from './date'
 import {EmailFilter} from './email'
 import {FilesAndMediaFilter} from './files-and-media'
@@ -20,6 +21,7 @@ export type PropertyFilter = {
   property: PropertyKey
   filter:
     | DateFilter
+    | CheckboxFilter
     | EmailFilter
     | FilesAndMediaFilter
     | MultiSelectFilter
