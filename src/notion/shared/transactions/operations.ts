@@ -9,7 +9,7 @@ export type OperationCommand =
 
 export type OperationPointer = {
   id: Uuid
-  table: 'block' | 'collection'
+  table: 'block' | 'collection' | 'collection_view'
   spaceId: Uuid
 }
 
