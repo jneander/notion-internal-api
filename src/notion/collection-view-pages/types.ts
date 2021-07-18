@@ -6,6 +6,7 @@ export type CollectionViewPageValue = BaseBlockValue & {
   format?: {
     block_locked?: boolean
     block_locked_by?: Uuid
+    card_cover_position?: number
     collection_pointer?: Pointer
     copied_from_pointer?: Pointer
     page_cover?: string
