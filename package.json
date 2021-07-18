@@ -1,6 +1,6 @@
 {
   "name": "@jneander/notion-internal-api",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "A client library for working with Notion's internal API",
   "main": "lib/index.js",
   "modules": "es/index.js",
